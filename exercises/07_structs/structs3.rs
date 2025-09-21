@@ -9,7 +9,7 @@ struct Package {
 }
 
 impl Package {
-    fn new(sender_country: String, recipient_country: String, weight_in_grams: u32) -> Self {
+    fn new(sender_country: String, recipient_country: String, weight_in_grams: u32) -> Package {
         if weight_in_grams < 10 {
             // This isn't how you should handle errors in Rust, but we will
             // learn about error handling later.
@@ -24,13 +24,15 @@ impl Package {
     }
 
     // TODO: Add the correct return type to the function signature.
-    fn is_international(&self) {
+    fn is_international(&self) -> bool {
         // TODO: Read the tests that use this method to find out when a package
         // is considered international.
+        self.sender_country != self.recipient_country
     }
 
     // TODO: Add the correct return type to the function signature.
-    fn get_fees(&self, cents_per_gram: u32) {
+    fn get_fees(&self, cents_per_gram: u32) -> u32 {
+        self.weight_in_grams * cents_per_gram
         // TODO: Calculate the package's fees.
     }
 }
